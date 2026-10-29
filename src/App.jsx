@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import "./App.css";
 
@@ -8,11 +9,19 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (firstName.trim() === "" || lastName.trim() === "") {
+      setFullName("");
+      return;
+    }
+
     setFullName(`${firstName} ${lastName}`);
   };
 
   return (
     <div className="container">
+      <h1>Full Name Display</h1>
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="firstName">First Name</label>
         <input
@@ -35,9 +44,7 @@ function App() {
         <button type="submit">Submit</button>
       </form>
 
-      <h2>Full Name Display</h2>
-
-{fullName && <p>Full Name: {fullName}</p>}
+      {fullName && <h2>Full Name: {fullName}</h2>}
     </div>
   );
 }
