@@ -10,7 +10,7 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (firstName.trim() === "" || lastName.trim() === "") {
+    if (!firstName.trim() || !lastName.trim()) {
       setFullName("");
       return;
     }
@@ -23,28 +23,36 @@ function App() {
       <h1>Full Name Display</h1>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="firstName">First Name</label>
-        <input
-          id="firstName"
-          type="text"
-          value={firstName}
-          onChange={(event) => setFirstName(event.target.value)}
-          required
-        />
+        <div className="form-group">
+          <label htmlFor="firstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            placeholder="Enter first name"
+            value={firstName}
+            onChange={(event) => setFirstName(event.target.value)}
+            required
+          />
+        </div>
 
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          id="lastName"
-          type="text"
-          value={lastName}
-          onChange={(event) => setLastName(event.target.value)}
-          required
-        />
+        <div className="form-group">
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            placeholder="Enter last name"
+            value={lastName}
+            onChange={(event) => setLastName(event.target.value)}
+            required
+          />
+        </div>
 
         <button type="submit">Submit</button>
       </form>
 
-      {fullName && <h2>Full Name: {fullName}</h2>}
+      {fullName && (
+        <h2>Full Name: {fullName}</h2>
+      )}
     </div>
   );
 }
